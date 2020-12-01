@@ -4,35 +4,45 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel ="stylesheet" type="text/css" href="style.css"/>
-        <script defer type ="text/javascript" src ="source/index.js"></script>
+        <script defer type ="text/javascript" src ="source/user.js"></script>
+        <script defer type ="text/javascript" src ="source/blog.js"></script>
     </head>
     <body>
        
         
         <!--SIGN IN-->
         <form>
-            <label for ="userName">UserName</label>
-            <input type = "text" id="username" name = "username" >
+            <div>
+                <h2 id="site-title-text">RollAround</h2>
+                <h4 id="site-welcome-text">Welcome! Please Sign In Below</h4>
+            </div>
+            <label for ="username">UserName</label>
+            <input type = "text" id="username" name = "username" ><br>
            
            <label for ="email">Email Address</label>
-           <input type = "text" id="email" name = "email" >
+           <input type = "text" id="email" name = "email" ><br>
           
-
-           <input type = "text" id="specialize" name = "specialize" >
-           <label for ="specialize">Type Your MA Specialty</label>
-
-           <input type = "file" id="profile_pic" name = "profile_pic" >
+           <label for ="specialize">Type Your MA Specialty</label>         
+           <input type = "text" id="specialize" name = "specialize" ><br>
+           
            <label for ="image">Upload Profile Picture</label>
+           <input type = "file" id="profile_pic" name = "profile-pic" ><br>
 
-           <input id="profile_button" type = "submit">
+           <input id="profile-button" type = "submit">
         </form>
 
         <!--PROFILE SHOW PAGE-->
+        <div id="profile-container">
+            
+        </div>
 
         <!--PROFILE EDIT-->
         <form></form>
 
          <!---INDEX PAGE-->
+         <div id="blog-index-container">
+             
+         </div>
 
         <!--BLOG SHOW PAGE-->
 
