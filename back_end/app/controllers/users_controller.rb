@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
-        render json: UserSerializer.new(user).to_serialized_json
+        render json: user
     end
 
 

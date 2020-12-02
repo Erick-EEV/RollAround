@@ -52,9 +52,9 @@ function createUser(event){
         headers: {"Content-Type": "application/json",
     "Accept": "application/json"
 },
-        body: JSON.stringify({userData})
+        body: JSON.stringify(userData)
     }).then(resp => resp.json())
-    .then(user => console.log(user))
+    .then(user => renderUsers(user))
     document.getElementById('form').reset()
 
     //     fetch(URL, {
