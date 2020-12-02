@@ -10,4 +10,18 @@ class UsersController < ApplicationController
         render json: UserSerializer.new(user).to_serialized_json
     end
 
+    def new
+        user = User.new
+        render json: UserSerializer.new(user).to_serialized_json
+    end
+
+    def create
+        user = User.create(user_params)
+        render json: UserSerializer.new(user).to_serialized_json
+    end
+
+
+    def user_params
+        params.require(:user).permit(:name, :email, :specialize, :profile_pic)
+    end
 end
