@@ -3,6 +3,8 @@ const user_url = 'http://localhost:3000/users'
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('form').addEventListener('submit', (event) => {
         createUser(event);
+        let form = document.getElementById('form')
+        form.innerHTML = ""
     })
     fetchUsers()
 })
@@ -31,7 +33,7 @@ function renderUsers(user){
     let specialize = document.createElement('h3')
         specialize.innerText = user.specialize 
 
-    // profileDiv.innerHTML = ""
+    profileDiv.innerHTML = ""
         
     userSpanTag.append(profile_img, name, email, specialize)
     profileDiv.appendChild(userSpanTag)
@@ -56,13 +58,4 @@ function createUser(event){
     }).then(resp => resp.json())
     .then(user => renderUsers(user))
     document.getElementById('form').reset()
-
-    //     fetch(URL, {
-    //         method: "POST",
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify({sailorData})
-    //         }).then(res => res.json())
-    //         .then(scout => renderScout(scout))
-    //     document.getElementsByClassName('sailor-form').reset()
-    // }
 }
