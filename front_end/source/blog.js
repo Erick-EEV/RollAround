@@ -24,11 +24,10 @@ function renderBlogs(blog) {
     let blogDiv = document.createElement('div')
     let title = document.createElement('h2')
         title.innerText = blog.title
-    
-    let name = localStorage.getItem('name')
 
+        let name = localStorage.getItem('name')
     let blogAuthor = document.createElement('h4')
-        blogAuthor.innerText = name
+        blogAuthor.innerText = blog.user.name
 
     let blogImg = document.createElement('img')
         blogImg.src = blog.img
@@ -49,10 +48,10 @@ function renderBlogs(blog) {
         blogDiv.append(title, blogAuthor, blogImg, blogDesc, blogKeys)
         blogIndexDiv.appendChild(blogDiv)
         // I want to add a class list of ui and card to the blogindexdv
-        blogIndexDiv.classList.add('card')
+        // blogIndexDiv.classList.add('card')
         // Then add the html to have a card to fill my out using my blogs information
         // We already have it created above but i want to change it out for a card i found on semantics ui
-        blogIndexDiv.innerHTML = ''
+        // blogIndexDiv.innerHTML = ''
         // <img class="card-img-top" src="..." alt="Card image cap">
         // <div class="card-body">
         //   <h5 class="card-title">Card title</h5>
@@ -75,8 +74,6 @@ function createBlog(event){
         user_id: id,
         user: name
     }
-    console.log(blogData)
-    console.log(blogData)
 
     fetch(`${blog_url}`, {
         method: "POST",
