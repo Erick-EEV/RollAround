@@ -1,7 +1,10 @@
 const blog_url = 'http://localhost:3000/blogs/'
 
 document.addEventListener('DOMContentLoaded', () =>{
-    fetchBlogs()
+    document.getElementById('blog-form').addEventListener('submit', (event) => {
+        createBlog(event);
+    })
+    // fetchBlogs()
 })
 
 function fetchBlogs(){
@@ -33,7 +36,22 @@ function renderBlogs(blog) {
     
     blogDiv.append(title, blogAuthor,blogImg, blogDesc, blogKeys)
     blogIndexDiv.appendChild(blogDiv)
-    
 
+}
 
+function createBlog(event){
+    event.preventDefault()
+
+    let blogData = {
+        title: event.target.title.value,
+        img: event.target.img.value,
+        description: event.target.description.value,
+        user: event.target
+    }
+    console.log(blogData)
+
+    // Store
+localStorage.setItem("lastname", "Smith");
+// Retrieve
+document.getElementById("result").innerHTML = localStorage.getItem("lastname");
 }

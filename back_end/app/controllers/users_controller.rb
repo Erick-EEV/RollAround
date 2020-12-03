@@ -17,11 +17,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create(user_params)
-        if user.name
-            render json: user
-        else
-            redirect_to :new
-        end
+        render json: user
     end
 
 

@@ -34,7 +34,14 @@ function renderUsers(user){
         specialize.innerText = user.specialize 
 
     profileDiv.innerHTML = ""
-        
+
+    let a = document.createElement('a');
+    let linkText = document.createTextNode("my title text");
+    a.appendChild(linkText);
+    a.title = "Create Blog";
+    a.href = "";
+    document.body.appendChild(a);
+    
     userSpanTag.append(profile_img, name, email, specialize)
     profileDiv.appendChild(userSpanTag)
 }
