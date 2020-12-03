@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     document.getElementById('blog-form').addEventListener('submit', (event) => {
         createBlog(event);
     })
-    // fetchBlogs()
+    document.getElementById('all-blogs').addEventListener('click', (event) => {
+     
+        fetchBlogs(event)
+    }, {once : true})
 })
 
 function fetchBlogs(){
@@ -35,6 +38,13 @@ function renderBlogs(blog) {
     
     let blogKeys = document.createElement('p')
         blogKeys.innerText = blog.key_word
+
+        let signin = document.getElementById("form")
+        signin.innerHTML = ""
+        let createblogform = document.getElementById("blog-form")
+        createblogform.innerHTML = ""
+        let profileDiv = document.getElementById("profile-container")
+        profileDiv.innerHTML = ""
     
     blogDiv.append(title, blogAuthor,blogImg, blogDesc, blogKeys)
     blogIndexDiv.appendChild(blogDiv)
@@ -65,7 +75,3 @@ function createBlog(event){
     .then(blog=> renderBlogs(blog))
     document.getElementById('blog-form').reset()
 }
-    // Store
-// localStorage.setItem("lastname", "Smith");
-// // Retrieve
-// document.getElementById("result").innerHTML = localStorage.getItem("lastname");

@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 function fetchUsers(){
-    // let id = localStorage.getItem("user_id")
     fetch(user_url)
     .then(resp => resp.json())
     .then(users => users.forEach(user => {
@@ -34,21 +33,6 @@ function renderUsers(user){
 
     let specialize = document.createElement('h3')
         specialize.innerText = user.specialize 
-    
-    let userBlogContainer = document.createElement('div')
-        let userBlogTitle = document.createElement('h3')
-
-        // profileBtn.id = user.id
-        
-    // user.blogs.forEach(blog => {console.log(blog)})        
-
-
-    // let createBlogBtn = document.createElement('BUTTON')
-    // createBlogBtn.innerText = 'Create New Blog'
-
-    // createBlogBtn.addEventListener('click', (event) => {
-    //     createBlog(event)  
-    //     })
     profileDiv.innerHTML = ""
 
 
@@ -64,10 +48,6 @@ function createUser(event){
         specialize: event.target.specialize.value,
         profile_pic: event.target.profilePic.value
     }
-
-
-    console.log(userData)
-    // localStorage.setItem("id", `${event.target.id.value}`)
 
     fetch(user_url, {
         method: "POST",
