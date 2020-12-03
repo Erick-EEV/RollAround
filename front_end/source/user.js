@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let form = document.getElementById('form')
         form.innerHTML = ""
     })
-
-    fetchUsers()   
+    fetchUsers() 
+    document.getElementById("log-out")  .addEventListener('click', (event) => {
+        
+    })
 })
 
 function fetchUsers(){
@@ -65,4 +67,8 @@ function createUser(event){
         let name = localStorage.getItem("name") 
     })
     document.getElementById('form').reset()
+}
+
+function logOut(){
+
 }

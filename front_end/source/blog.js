@@ -45,10 +45,23 @@ function renderBlogs(blog) {
         createblogform.innerHTML = ""
         let profileDiv = document.getElementById("profile-container")
         profileDiv.innerHTML = ""
-    
-    blogDiv.append(title, blogAuthor,blogImg, blogDesc, blogKeys)
-    blogIndexDiv.appendChild(blogDiv)
-
+        
+        blogDiv.append(title, blogAuthor, blogImg, blogDesc, blogKeys)
+        blogIndexDiv.appendChild(blogDiv)
+        // I want to add a class list of ui and card to the blogindexdv
+        blogIndexDiv.classList.add('card')
+        // Then add the html to have a card to fill my out using my blogs information
+        // We already have it created above but i want to change it out for a card i found on semantics ui
+        blogIndexDiv.innerHTML = ''
+        // <img class="card-img-top" src="..." alt="Card image cap">
+        // <div class="card-body">
+        //   <h5 class="card-title">Card title</h5>
+        //   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        // </div>
+        // <div class="card-footer">
+        //   <small class="text-muted">Last updated 3 mins ago</small>
+        // </div>
+        
 }
 
 function createBlog(event){
