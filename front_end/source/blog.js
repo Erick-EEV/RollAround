@@ -22,9 +22,11 @@ function renderBlogs(blog) {
     let title = document.createElement('h2')
         title.innerText = blog.title
     
+    let name = localStorage.getItem('name')
+
     let blogAuthor = document.createElement('h4')
-        blogAuthor.innerText = blog.user.name
-    
+        blogAuthor.innerText = name
+
     let blogImg = document.createElement('img')
         blogImg.src = blog.img
     
@@ -41,17 +43,29 @@ function renderBlogs(blog) {
 
 function createBlog(event){
     event.preventDefault()
-
+    let id = localStorage.getItem('user_id')
+    let name = localStorage.getItem('name')
     let blogData = {
         title: event.target.title.value,
         img: event.target.img.value,
         description: event.target.description.value,
-        user: event.target
+        user_id: id,
+        user: name
     }
     console.log(blogData)
+    console.log(blogData)
 
-    // Store
-localStorage.setItem("lastname", "Smith");
-// Retrieve
-document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+    fetch(`${blog_url}`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json",
+                 "Accept": "application/json"
+                },
+        body: JSON.stringify(blogData)
+    }).then(resp => resp.json())
+    .then(blog=> renderBlogs(blog))
+    document.getElementById('blog-form').reset()
 }
+    // Store
+// localStorage.setItem("lastname", "Smith");
+// // Retrieve
+// document.getElementById("result").innerHTML = localStorage.getItem("lastname");

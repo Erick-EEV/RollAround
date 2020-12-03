@@ -1,21 +1,23 @@
-const user_url = 'http://localhost:3000/users'
+const user_url = 'http://localhost:3000/users/'
 
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('form').addEventListener('submit', (event) => {
-        createUser(event);
+        createUser(event)
         let form = document.getElementById('form')
         form.innerHTML = ""
     })
-    fetchUsers()
+
+    fetchUsers()   
 })
 
 function fetchUsers(){
+    // let id = localStorage.getItem("user_id")
     fetch(user_url)
     .then(resp => resp.json())
     .then(users => users.forEach(user => {
-        renderUsers(user)
-    })
-)}
+        renderUsers(user)}
+    ))
+}
 
 
 function renderUsers(user){
@@ -32,16 +34,24 @@ function renderUsers(user){
 
     let specialize = document.createElement('h3')
         specialize.innerText = user.specialize 
+    
+    let userBlogContainer = document.createElement('div')
+        let userBlogTitle = document.createElement('h3')
 
+        // profileBtn.id = user.id
+        
+    // user.blogs.forEach(blog => {console.log(blog)})        
+
+
+    // let createBlogBtn = document.createElement('BUTTON')
+    // createBlogBtn.innerText = 'Create New Blog'
+
+    // createBlogBtn.addEventListener('click', (event) => {
+    //     createBlog(event)  
+    //     })
     profileDiv.innerHTML = ""
 
-    let a = document.createElement('a');
-    let linkText = document.createTextNode("my title text");
-    a.appendChild(linkText);
-    a.title = "Create Blog";
-    a.href = "";
-    document.body.appendChild(a);
-    
+
     userSpanTag.append(profile_img, name, email, specialize)
     profileDiv.appendChild(userSpanTag)
 }
@@ -54,15 +64,25 @@ function createUser(event){
         specialize: event.target.specialize.value,
         profile_pic: event.target.profilePic.value
     }
+
+
     console.log(userData)
-    
-    fetch(`${user_url}`, {
+    // localStorage.setItem("id", `${event.target.id.value}`)
+
+    fetch(user_url, {
         method: "POST",
         headers: {"Content-Type": "application/json",
-    "Accept": "application/json"
-},
+        "Accept": "application/json"
+        },
         body: JSON.stringify(userData)
     }).then(resp => resp.json())
-    .then(user => renderUsers(user))
+    .then(user => {
+        renderUsers(user)
+        localStorage.clear()
+        localStorage.setItem("user_id", user.id)
+        let id = localStorage.getItem("user_id")
+        localStorage.setItem("name", user.name)
+        let name = localStorage.getItem("name") 
+    })
     document.getElementById('form').reset()
 }
