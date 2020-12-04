@@ -1,13 +1,29 @@
 const user_url = 'http://localhost:3000/users/'
 
-document.addEventListener('DOMContentLoaded', ()=>{
+    profileDiv = document.getElementById("profile-container")
+    blogIndexContainer = document.getElementById('blog-index-container')
+    buttonContainer = document.getElementById("button-index-container")
+    blogForm = document.getElementById('blog-form')
+
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+        profileDiv.style.visibility = "hidden";
+        buttonContainer.style.visibility = "hidden";
+        blogForm.style.visibility = "hidden"
+
     document.getElementById('form').addEventListener('submit', (event) => {
+        profileDiv.style.visibility = "visible"
+        blogIndexContainer.style.visibility = "visible";
+        buttonContainer.style.visibility = "visible";
+        blogForm.style.visibility = "visible"
+
         createUser(event)
         let form = document.getElementById('form')
         form.innerHTML = ""
+
     })
     fetchUsers() 
-    document.getElementById("log-out")  .addEventListener('click', (event) => {
+    document.getElementById("log-out").addEventListener('click', (event) => {
         
     })
 })
@@ -22,10 +38,11 @@ function fetchUsers(){
 
 
 function renderUsers(user){
-    let profileDiv = document.getElementById("profile-container")
+
     let userSpanTag = document.createElement('span')
     let profile_img = document.createElement('img')
         profile_img.src = user.profile_pic
+        profile_img.width = "130"
     
     let name = document.createElement('h2')
         name.innerText = user.name
@@ -35,7 +52,7 @@ function renderUsers(user){
 
     let specialize = document.createElement('h3')
         specialize.innerText = user.specialize 
-    profileDiv.innerHTML = ""
+        profileDiv.innerHTML = ""
 
 
     userSpanTag.append(profile_img, name, email, specialize)

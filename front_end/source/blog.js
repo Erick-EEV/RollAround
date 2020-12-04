@@ -1,13 +1,15 @@
 const blog_url = 'http://localhost:3000/blogs/'
+blogForm = document.getElementById('blog-form')
 
 document.addEventListener('DOMContentLoaded', () =>{
-    document.getElementById('blog-form').addEventListener('submit', (event) => {
-        createBlog(event);
+    blogForm.addEventListener('submit', (event) => {
+          createBlog(event);
+
     })
     document.getElementById('all-blogs').addEventListener('click', (event) => {
      
-        fetchBlogs(event)
-    }, {once : true})
+    fetchBlogs(event)
+    }, {once : true}) 
 })
 
 function fetchBlogs(){
@@ -20,32 +22,45 @@ function fetchBlogs(){
 
 function renderBlogs(blog) {
     let blogIndexDiv = document.getElementById('blog-index-container')
+        blogIndexDiv.classList.add("card")
     
     let blogDiv = document.createElement('div')
-    let title = document.createElement('h2')
-        title.innerText = blog.title
-
-        let name = localStorage.getItem('name')
-    let blogAuthor = document.createElement('h4')
-        blogAuthor.innerText = blog.user.name
-
+        blogDiv.classList.add("card-body")
+ 
     let blogImg = document.createElement('img')
         blogImg.src = blog.img
-    
-    let blogDesc = document.createElement('p')
+        blogImg.classList.add("card-img-top")
+
+    let title = document.createElement('h2')
+        title.innerText = blog.title
+        title.classList.add("card-title")
+
+    let blogAuthor = document.createElement('h4')
+            blogAuthor.innerText = name
+    let currentUser = localStorage.getItem('name')
+
+        }
+        blogAuthor.innerText = blog.user.name
+
+   let blogDesc = document.createElement('p')
         blogDesc.innerText = blog.description
+        blogDesc.classList.add("card-text")
     
     let blogKeys = document.createElement('p')
         blogKeys.innerText = blog.key_word
+        blogKeys.classList.add("card-text")
 
         let signin = document.getElementById("form")
-        signin.innerHTML = ""
+            signin.innerHTML = ""
+
         let createblogform = document.getElementById("blog-form")
-        createblogform.innerHTML = ""
+            createblogform.innerHTML = ""
+
         let profileDiv = document.getElementById("profile-container")
-        profileDiv.innerHTML = ""
+            profileDiv.innerHTML = ""
         
-        blogDiv.append(title, blogAuthor, blogImg, blogDesc, blogKeys)
+            
+        blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys)
         blogIndexDiv.appendChild(blogDiv)
         // I want to add a class list of ui and card to the blogindexdv
         // blogIndexDiv.classList.add('card')
@@ -66,16 +81,18 @@ function renderBlogs(blog) {
 function createBlog(event){
     event.preventDefault()
     let id = localStorage.getItem('user_id')
-    let name = localStorage.getItem('name')
+    let currentUser = localStorage.getItem('name')
     let blogData = {
         title: event.target.title.value,
         img: event.target.img.value,
         description: event.target.description.value,
         user_id: id,
-        user: name
+        user : {
+            name: currentUser
+        }
     }
 
-    fetch(`${blog_url}`, {
+    fetch(`${blog_url}`,{
         method: "POST",
         headers: {"Content-Type": "application/json",
                  "Accept": "application/json"
@@ -83,5 +100,5 @@ function createBlog(event){
         body: JSON.stringify(blogData)
     }).then(resp => resp.json())
     .then(blog=> renderBlogs(blog))
-    document.getElementById('blog-form').reset()
+    blogForm.reset()
 }
