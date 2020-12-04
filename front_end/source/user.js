@@ -10,7 +10,8 @@ const user_url = 'http://localhost:3000/users/'
         profileDiv.style.visibility = "hidden";
         buttonContainer.style.visibility = "hidden";
         blogForm.style.visibility = "hidden"
-
+        let form = document.getElementById("comment")
+        form.style.visibility = "hidden";
     document.getElementById('form').addEventListener('submit', (event) => {
         profileDiv.style.visibility = "visible"
         blogIndexContainer.style.visibility = "visible";
