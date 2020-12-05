@@ -69,6 +69,11 @@ function renderBlogs(blog){
     let commentInput = document.createElement('input')
     commentInput.type = "submit"
 
+    commentForm.addEventListener('submit', (event) => {
+      alert("Your comment has been added")
+      createComment(event)
+}) 
+
     commentDiv.appendChild(head)
     commentForm.append(commentDiv, textTag, commentInput)
 
