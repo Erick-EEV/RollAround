@@ -10,8 +10,8 @@ const user_url = 'http://localhost:3000/users/'
         profileDiv.style.visibility = "hidden";
         buttonContainer.style.visibility = "hidden";
         blogForm.style.visibility = "hidden"
-        let form = document.getElementById("comment")
-        form.style.visibility = "hidden";
+        // let form = document.getElementById("comment")
+        // form.style.visibility = "hidden";
     document.getElementById('form').addEventListener('submit', (event) => {
         profileDiv.style.visibility = "visible"
         blogIndexContainer.style.visibility = "visible";
@@ -25,7 +25,7 @@ const user_url = 'http://localhost:3000/users/'
     })
     fetchUsers() 
     document.getElementById("log-out").addEventListener('click', (event) => {
-        
+        logOut(event)
     })
 })
 
@@ -87,6 +87,6 @@ function createUser(event){
     document.getElementById('form').reset()
 }
 
-function logOut(){
-
+function logOut(event){
+    localStorage.clear()
 }

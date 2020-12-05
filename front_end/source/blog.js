@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () =>{
           alert("Your blog has been added")
     })
     document.getElementById('all-blogs').addEventListener('click', (event) => {
-      let commentForm = document.getElementById("comment")
-            commentForm.style.visibility = "visible";
     fetchBlogs(event)
     }, {once : true}) 
    
@@ -58,68 +56,78 @@ function renderBlogs(blog){
 
     let profileDiv = document.getElementById("profile-container")
         profileDiv.innerHTML = ""
-    
-    
-    let commentForm = document.getElementById("comment")
-        // commentForm.innerText = 
-    let ul = document.createElement('ul')
-        let li = document.createElement('li')
-   
-    ul.appendChild(li)
-        li.forEach(function (li) {
-            li.innerText = blog.comments.value
-         })
+    //Below I created the blog form and commented it out in the html
+    //Because when we place the form in the html we can only grab it once
+    //We want a new form to be created and appended to each blog as they render
+    let commentForm = document.createElement('form')
+    commentForm.id = "comment"
+    let commentDiv = document.createElement('div')
+    let head = document.createElement('h4')
+    head.innerText = "Comment Below"
+    let textTag = document.createElement('textarea')
+    textTag.type = "text-area"
+    let commentInput = document.createElement('input')
+    commentInput.type = "submit"
+
+    commentDiv.appendChild(head)
+    commentForm.append(commentDiv, textTag, commentInput)
+
         
-    // let  = my_array[my_array.length - 1]
+        let ul = document.createElement('ul')
+        blog.comments.forEach((comment) => {
+            let li = document.createElement('li')
+            li.innerText = comment.comment
+            ul.appendChild(li)
+        })
     blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys, commentForm, ul)
     blogIndexDiv.appendChild(blogDiv)
 
 }
 
 
-function renderSingleBlog(blog) {
-    let blogIndexDiv = document.getElementById('blog-index-container')
-        blogIndexDiv.classList.add("card")
+// function renderSingleBlog(blog) {
+//     let blogIndexDiv = document.getElementById('blog-index-container')
+//         blogIndexDiv.classList.add("card")
     
-    let blogDiv = document.createElement('div')
-        blogDiv.classList.add("card-body")
+//     let blogDiv = document.createElement('div')
+//         blogDiv.classList.add("card-body")
  
-    let blogImg = document.createElement('img')
-        blogImg.src = blog.img
-        blogImg.classList.add("card-img-top")
+//     let blogImg = document.createElement('img')
+//         blogImg.src = blog.img
+//         blogImg.classList.add("card-img-top")
 
-    let title = document.createElement('h2')
-        title.innerText = blog.title
-        title.classList.add("card-title")
+//     let title = document.createElement('h2')
+//         title.innerText = blog.title
+//         title.classList.add("card-title")
     
-    let name = localStorage.getItem('name')
-    let blogAuthor = document.createElement('h4')
-            blogAuthor.innerText = name
+//     let name = localStorage.getItem('name')
+//     let blogAuthor = document.createElement('h4')
+//             blogAuthor.innerText = name
 
         
 
-   let blogDesc = document.createElement('p')
-        blogDesc.innerText = blog.description
-        blogDesc.classList.add("card-text")
+//    let blogDesc = document.createElement('p')
+//         blogDesc.innerText = blog.description
+//         blogDesc.classList.add("card-text")
     
-    let blogKeys = document.createElement('p')
-        blogKeys.innerText = blog.key_word
-        blogKeys.classList.add("card-text")
+//     let blogKeys = document.createElement('p')
+//         blogKeys.innerText = blog.key_word
+//         blogKeys.classList.add("card-text")
 
-        let signin = document.getElementById("form")
-            signin.innerHTML = ""
+//         let signin = document.getElementById("form")
+//             signin.innerHTML = ""
 
-        let createblogform = document.getElementById("blog-form")
-            createblogform.innerHTML = ""
+//         let createblogform = document.getElementById("blog-form")
+//             createblogform.innerHTML = ""
 
-        let profileDiv = document.getElementById("profile-container")
-            profileDiv.innerHTML = ""
+//         let profileDiv = document.getElementById("profile-container")
+//             profileDiv.innerHTML = ""
         
-            blogIndexDiv.innerHTML = ""     
-        blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys)
-        blogIndexDiv.appendChild(blogDiv)
+//             blogIndexDiv.innerHTML = ""     
+//         blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys)
+//         blogIndexDiv.appendChild(blogDiv)
       
-}
+// }
 
 function createBlog(event){
     event.preventDefault()
@@ -133,11 +141,6 @@ function createBlog(event){
         user : {
             name: name
         },
-        comments: [
-           {
-             comment: event.target.commentBtn.value 
-           } 
-        ]
     }
 
     fetch(`${blog_url}`,{
