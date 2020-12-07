@@ -15,6 +15,11 @@ class BlogsController < ApplicationController
         render json: blog
     end
 
+    def update
+        blog = Blog.update(blog_params)
+        render json: blog
+    end
+
     def blog_params
         params.require(:blog).permit(:title, :img, :description, :user_id)
     end
