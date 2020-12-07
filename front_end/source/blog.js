@@ -70,11 +70,7 @@ function renderBlogs(blog){
     textTag.name = "newText"
     let commentInput = document.createElement('input')
     commentInput.type = "submit"
-<<<<<<< HEAD
-    
-=======
     commentInput.id = blog.id
->>>>>>> c4848b1723e5b2f08bb68b2a77a43fa834ce2e60
 
     commentForm.addEventListener('submit', (event) => {
       alert("Your comment has been added")
