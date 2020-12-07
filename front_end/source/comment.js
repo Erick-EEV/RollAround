@@ -1,36 +1,41 @@
-let commentUrl = "http://localhost:3000/blogs"
+const commentUrl = "http://localhost:3000/comments/"
 
 document.addEventListener('DOMContentLoaded', () =>{ 
 })
      
 
 
-function addComment(){
+function fetchComment(){
     let blogIndex = document.getElementById("blog-index-container")
     let form = document.getElementById("comment")
        blogIndex.appendChild(form) 
 }
 
+
+
 function createComment(event){
     event.preventDefault()
 
     commentData = {
-        comments: event.target.value
+        newComment: {
+            comment: event.target.newText.value,
+            blog_id: event.target[1].id,
+            user_id: localStorage.getItem('user_id')
+        }
     }
 
-console.log(commentData);
-  console.log(comment);
-  
-  //We need to access the blog_id
-  //Then use that Id to make the correct patch request
+    console.log(commentData);
+    
+    // let blogId = event.target[1].id
+    // console.log(blogId);
 
-    fetch(`${commentUrl}/${blogId}`,{
-        method: "PATCH",
-        headers: {"Content-Type":"application/json",
+    fetch(commentUrl,{
+        method: "POST",
+        headers: {"Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body:JSON.stringify(commentData)       
+                body: JSON.stringify(commentData) 
     }).then(resp => resp.json())
-    .then(commentData => console.log(commentData))
+    .then(commentData => addComment(commentData))
 
 }
