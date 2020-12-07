@@ -68,6 +68,7 @@ function renderBlogs(blog){
     textTag.type = "text-area"
     let commentInput = document.createElement('input')
     commentInput.type = "submit"
+    
 
     commentForm.addEventListener('submit', (event) => {
       alert("Your comment has been added")
