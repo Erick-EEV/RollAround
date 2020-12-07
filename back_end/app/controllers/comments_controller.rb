@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
     end 
 
     def create
-        byebug
         comment = Comment.create(commentParams)
         render json: comment
     end

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () =>{
           createBlog(event);
           alert("Your blog has been added")
     })
-    document.getElementById('all-blogs').addEventListener('click', (event) => {
+    document.getElementById('blogNav').addEventListener('click', (event) => {
     fetchBlogs(event)
     }, {once : true}) 
    
@@ -23,8 +23,9 @@ function fetchBlogs(){
     }))
 }
 function renderBlogs(blog){
-    let blogIndexDiv = document.getElementById('blog-index-container')
-    blogIndexDiv.classList.add("card")
+  
+    let blogIndexDiv = document.getElementById('blog-index-container')   
+        blogIndexDiv.style = "width: 18rem;"
 
     let blogDiv = document.createElement('div')
         blogDiv.classList.add("card-body")
@@ -33,7 +34,7 @@ function renderBlogs(blog){
         blogImg.src = blog.img
         blogImg.classList.add("card-img-top")
 
-    let title = document.createElement('h2')
+    let title = document.createElement('h5')
         title.innerText = blog.title
         title.classList.add("card-title")
 
@@ -60,6 +61,8 @@ function renderBlogs(blog){
     //Because when we place the form in the html we can only grab it once
     //We want a new form to be created and appended to each blog as they render
     let commentForm = document.createElement('form')
+        commentForm.classList.add("comment-form-content")
+    
     commentForm.id = "comment"
     let commentDiv = document.createElement('div')
     let head = document.createElement('h4')
@@ -82,6 +85,7 @@ function renderBlogs(blog){
 
         
         let ul = document.createElement('ul')
+                ul.id = "commentList"
         blog.comments.forEach((comment) => {
             let li = document.createElement('li')
             li.innerText = comment.comment
@@ -89,6 +93,7 @@ function renderBlogs(blog){
         })
     blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys, commentForm, ul)
     blogIndexDiv.appendChild(blogDiv)
+    
 
 }
 
@@ -100,8 +105,8 @@ function addComment(event){
     // event.target[0].value
     console.log(li.innerText);
 
-    let ul = document.getElementById('ul')
-
+    let ul = document.getElementById('commentList')
+    ul.id = "commentList"
     ul.appendChild(li)
 
 }
