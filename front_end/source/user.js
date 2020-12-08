@@ -81,6 +81,7 @@ function renderSoloUsers(user){
 
 
 function renderUsers(user){
+
     let profileDiv = document.getElementById('profile-container')
 
     let userSpanTag = document.createElement('span')
@@ -112,6 +113,8 @@ function renderUsers(user){
 
 function createUser(event){
     event.preventDefault()
+    let headerImage = document.querySelector(".web-image")
+    headerImage.style.display = "none"
     console.log(event.target)
     let userData = {
         name: event.target.userName.value,

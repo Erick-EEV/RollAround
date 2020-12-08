@@ -1,31 +1,124 @@
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: #203647;
-    max-width: 500px;
+    max-width: 900px;
     margin: auto; 
     
 }
+
+img.web-image{
+  width: 100%;
+  opacity: 70%;
+
+}
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  /* Navbar links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
+ 
+#site-welcome-text{
+  font-family: 'Bebas Neue', cursive;
+  color:white;
+  position: absolute;
+  top: 300px;
+  right: 200;
+  width: 100%;
+  height: 100px;
+  left: 600px;
+  font-size: 50px;
+}
+
+label.sign-in-text{
+  color: gray;
+}
+
+
+
+input[type=text] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    
+  }
 
 div.card-body {
     border: 2px lightgray;
     border-style: solid;
     width: 700px;
+    height: 1300px;
     margin: 50px;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
+    background-color:  #203647;
+
 
 
 }
 
-h5.card-title{
-    font-size: 20px;
+textarea {
+    width: 100%;
+    height: 50px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
+  
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  button:hover {
+    opacity:1;
+  }
+
+ 
+  .author-text{
+    margin: 100px;
+    
+  }
+  
+h4.card-title{
+    font-size: 40px;
     color:  #FFD700;
+}
+
+#comment-below{
+  color: white;
 }
 
 p.card-text{
     color: white;
     font-family: 'Open Sans', sans-serif;
+    padding-bottom: 20px;
 }
 
 .nav-link{
@@ -41,15 +134,64 @@ h2{
 
 }
 
-.card-img-top {
+img.card-img-top {
     border-radius: 8px;
-    width: 500px;
+    width: 80%;
+    height: 50vw;
+    object-fit: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    align-content: center;
+    margin-left: 50px;
+
+}
+
+h5#author-text.card-text{
+  margin-right: 4000px;
+  color: white;
+
 }
 
 .comment-form-content {
-    align-content: center;
+  width: 80%;
+  height: 100px;
+  padding: 5px;
+  padding-bottom: 50px;
+  justify-content: left;
+  margin-bottom: 50px;
 
 }
+
+h4#comment-below{
+  padding-top: 0px;
+}
+
+#comment-head{
+  color: white;
+  justify-content: left;
+
+
+}
+
+#commentList {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    justify-content: left;
+    list-style:none;
+    max-height:100px;
+    overflow:auto;
+    width: 100%;
+    height: 500px;
+    background-color: lightgray;
+    font-size: 14px;
+    
+
+}
+
+
 
 /* Comment what each element selection is doing  */
 

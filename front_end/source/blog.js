@@ -28,18 +28,21 @@ function renderBlogs(blog){
         blogIndexDiv.style = "width: 18rem;"
 
     let blogDiv = document.createElement('div')
-        blogDiv.classList.add("card-body")
+        blogDiv.classList.add("card-body", "square")
 
     let blogImg = document.createElement('img')
         blogImg.src = blog.img
         blogImg.classList.add("card-img-top")
+        blogImg.class
 
-    let title = document.createElement('h5')
+    let title = document.createElement('h4')
         title.innerText = blog.title
         title.classList.add("card-title")
 
-    let blogAuthor = document.createElement('h4')    
+    let blogAuthor = document.createElement('h5')    
         blogAuthor.innerText = blog.user.name
+        blogAuthor.classList.add("card-text")
+        blogAuthor.id = "author-text"
 
     let blogDesc = document.createElement('p')
         blogDesc.innerText = blog.description
@@ -67,6 +70,7 @@ function renderBlogs(blog){
     let commentDiv = document.createElement('div')
     let head = document.createElement('h4')
     head.innerText = "Comment Below"
+    head.id ="comment-below"
     let textTag = document.createElement('textarea')
     textTag.type = "text-area"
     textTag.id = "newComent"
@@ -83,7 +87,10 @@ function renderBlogs(blog){
     commentDiv.appendChild(head)
     commentForm.append(commentDiv, textTag, commentInput)
 
-        
+        let commentListHead = document.createElement('h4')
+            commentListHead.innerText = "Comments"
+            commentListHead.id = "comment-head"
+            commentListHead.classList.add("card-body")
         let ul = document.createElement('ul')
                 ul.id = "commentList"
         blog.comments.forEach((comment) => {
@@ -91,7 +98,8 @@ function renderBlogs(blog){
             li.innerText = comment.comment
             ul.appendChild(li)
         })
-    blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys, commentForm, ul)
+
+    blogDiv.append(blogImg, title, blogAuthor, blogDesc, blogKeys, commentForm, commentListHead, ul)
     blogIndexDiv.appendChild(blogDiv)
     
 
